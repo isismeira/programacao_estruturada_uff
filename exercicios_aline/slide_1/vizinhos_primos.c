@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 void vizinhos_primos(int numero);
+int eh_primo(int numero);
 
 int main()
 {
@@ -15,34 +16,40 @@ int main()
 
 void vizinhos_primos(int numero)
 {
-    int primo_antecessor_a = 0;
-    int primo_antecessor_b = 0;
-    int primo_sucessor_b = 0;
-    int primo_sucessor_a = 0;
+    int primo_antecessor_a = 0, primo_antecessor_b = 0;
+    int primo_sucessor_a = 0, primo_sucessor_b = 0;
+    
+    int i = numero - 1;
 
-    // Antecessores
-    for (int i = numero; i >= 1; i--){
-        if (eh_primo(i) && primo_antecessor_b == 0) {
-            primo_antecessor_b = i;
+    // Encontrar dois primos antecessores
+    while (i > 1) {
+        if (eh_primo(i)) {
+            if (primo_antecessor_b == 0)
+                primo_antecessor_b = i;
+            else {
+                primo_antecessor_a = i;
+                break;
+            }
         }
-        if (eh_primo(i) && primo_antecessor_b != 0){
-            primo_antecessor_a = i;
-            break;
-        }
+        i--;
     }
 
-    // Sucessores
-    for (int i = numero; i <= i*i; i++){
-        if (eh_primo(i) && primo_antecessor_b == 0) {
-            primo_sucessor_b = i;
+    i = numero + 1;
+
+    // Encontrar dois primos sucessores
+    while (1) {
+        if (eh_primo(i)) {
+            if (primo_sucessor_b == 0)
+                primo_sucessor_b = i;
+            else {
+                primo_sucessor_a = i;
+                break;
+            }
         }
-        if (eh_primo(i) && primo_antecessor_b != 0){
-            primo_sucessor_a = i;
-            break;
-        }
+        i++;
     }
 
-    printf("%i %i %i %i", primo_antecessor_a, primo_antecessor_b, primo_sucessor_b, primo_sucessor_a);
+    printf("Os primos vizinhos de %i são: %i %i %i %i\n", numero, primo_antecessor_a, primo_antecessor_b, primo_sucessor_b, primo_sucessor_a);
 }
 
 int eh_primo(int numero)
