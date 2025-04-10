@@ -1,20 +1,33 @@
 #include <stdio.h>
 
 int contadigitos(int n, int d);
+int eh_permutacao(int a, int b);
 
 int main()
 {
-    int n;
-    int d;
+    int a;
+    int b;
 
-    printf("Digite um inteiro: ");
-    scanf("%i", &n);
+    printf("Digite dois inteiros(a e b): ");
+    scanf("%i %i", &a, &b);
 
-    printf("Escreva um digito d para ver quantas vezes ele aparece em %i: ", n);
-    scanf("%i", &d);
+    int resultado = eh_permutacao(a, b);
+    if (resultado) {
+        printf("%i eh permutacao de %i", b, a);
+    } else {
+        printf("%i nao eh permutacao de %i", b, a);
+    }
+}
 
-    int resultado = contadigitos(n, d);
-    printf("O digito %i aparece %i vezes no numero %i", d, resultado, n);
+int eh_permutacao(int a, int b){
+    // Para cada um dos dez dígitos possíveis...
+    for (int i=0; i <= 9; i++){
+        if (contadigitos(a, i) != contadigitos(b,i)){ // ....se a contagem de um digito "i" for diferente para a e b...
+            return 0; // ...b não é permutação de a!
+            break;
+        } 
+    }
+    return 1;
 }
 
 int contadigitos(int n,int d)
