@@ -14,5 +14,4 @@ int main()
     }
 
     int termos_diferentes = 0;
-    for i
 }
