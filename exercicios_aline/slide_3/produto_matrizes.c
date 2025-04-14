@@ -9,11 +9,11 @@ int main()
     int l2 = 2;
     int c2 = 3;
 
-    int matriz_a[l1][c1] = {{1,2},{3,4},{5,6}}; // em compiladores mais antigos, (como o gcc em modo C89 ou C90), não aceita VLA (Variáveis como Tamanho de Matriz).
+    int matriz_a[3][2] = {{1,2},{3,4},{5,6}}; // em compiladores mais antigos, (como o gcc em modo C89 ou C90), não aceita VLA (Variáveis como Tamanho de Matriz).
 
-    int matriz_b[l2][c2] = {{7,8,9},{10,11,12}};
+    int matriz_b[2][3] = {{7,8,9},{10,11,12}};
 
-    int matriz_c[l1][c2];                      
+    int matriz_c[3][3];                      
 
     produto_matrizes(l1,c1,matriz_a,l2,c2,matriz_b,matriz_c);
 }
@@ -23,7 +23,7 @@ void produto_matrizes(int l1, int c1, int matriz_a[l1][c1], int l2, int c2, int 
     if (c1 == l2) {
         for (int i = 0; i < l1; i++) {
             for (int j = 0; j < c2; j++) {
-                matriz_c[i][j]  = 0;
+                matriz_c[i][j]  = 0; // a úníca diferença comparado com meu programa em Python é essa, declarar o valor da matriz antes do ultímo loop
                 for (int k = 0; k < c1; k++) {
                     matriz_c[i][j] += matriz_a[i][k] * matriz_b[k][j];
                 }
