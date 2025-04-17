@@ -1,30 +1,59 @@
-#include <stdio.h>
+include <stdio.h>
+include <math.h>
+int num_digits(unsigned int num) { if (num == 0) return 1; // Para o número 0, há 1 dígito int length = 0; while (num > 0) { num /= 10; length++; } return length; }
 
-int main() {
-    int n;
-    scanf("%d", &n);
+int main() { unsigned short casos, qtsCaso = 4, ordem; unsigned short linha, coluna, qtsDigitosAtual, k; unsigned int maior;
 
-    float valores[n];
-    int contado[n]; 
+scanf(&quot;%hu&quot;, &amp;casos);
+while (casos--) {
+    scanf(&quot;%hu&quot;, &amp;ordem);
 
-    for (int i = 0; i < n; i++) {
-        scanf("%f", &valores[i]);
-        contado[i] = 0; 
+    unsigned int matriz[ordem][ordem];
+
+    // Preenche a matriz e já faz o quadrado do termo
+    for (linha = 0; linha &lt; ordem; linha++) {
+        for (coluna = 0; coluna &lt; ordem; coluna++) {
+            unsigned int valor;
+            scanf(&quot;%u&quot;, &amp;valor);
+            matriz[linha][coluna] = valor * valor;
+        }
     }
 
-    for (int i = 0; i < n; i++) {
-        if (contado[i] == 1) continue; 
+    // Imprime o cabeçalho
+    printf(&quot;Quadrado da matriz #%hu:\n&quot;, qtsCaso);
 
-        int contagem = 1;
-        for (int j = i + 1; j < n; j++) {
-            if (valores[i] == valores[j]) {
-                contagem++;
-                contado[j] = 1; 
+    // Calcula a largura máxima de cada coluna
+    for (coluna = 0; coluna &lt; ordem; coluna++) {
+        maior = 0;
+        for (linha = 0; linha &lt; ordem; linha++) {
+            if (matriz[linha][coluna] &gt; maior) {
+                maior = matriz[linha][coluna];
             }
         }
+        // Acha o número de dígitos do maior elemento da coluna
+        qtsDigitosAtual = num_digits(maior);
 
-        printf("%.1f ocorre %d vez%s\n", valores[i], contagem, contagem > 1 ? "es" : "");
+        // Imprime cada linha da matriz
+        for (linha = 0; linha &lt; ordem; linha++) {
+            if (coluna == 0 &amp;&amp; linha != 0) {
+                printf(&quot;\n&quot;);
+            }
+            // Imprime o valor com o alinhamento correto
+            if (coluna != 0) {
+                printf(&quot; &quot;);
+            }
+            printf(&quot;%*u&quot;, qtsDigitosAtual, matriz[linha][coluna]);
+        }
+        printf(&quot;\n&quot;);
     }
 
-    return 0;
+    qtsCaso++;
+
+    // Linha em branco condicional
+    if (casos &gt; 0) {
+        printf(&quot;\n&quot;);
+    }
+}
+
+return 0;
 }
