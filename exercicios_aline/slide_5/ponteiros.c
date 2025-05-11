@@ -1,25 +1,44 @@
 #include <stdio.h>
 
-int main()
+void conceito_de_ponteiro()
 {
-    int x = 10;  // valor 10 está na gaveta 0061FF18
-    int *p = &x; // p é um papel(ponteiro) que diz "0061FF18"
+    int x = 10;
+    printf("Esse é o valor de x: %i \n", x);
+    printf("Esse é o endereço de x: %i \n", &x);
 
-    // (&) Endereço de
-    printf("Endereco de x: %p \n", &x); // Exibe "0061FF18" // endereço de x
+    int *ponteiro = &x; // "apontamos o ponteiro para o endereço de x"
+    printf("Acessando o valor do ponteiro: %i \n", *ponteiro);
+    printf("Acessando o endereço que o ponteiro aponta: %p \n", ponteiro);
 
-    // (*) Conteúdo de
-    printf("Valor de x: %d", *p); // Exibe 10
-
-    // Modificar via ponteiro
-    // *p = 99
-    // printf("Novo valor de x: %d", x);
-
-    // Passando ponteiros para modificar valores fora da função
-    int num = 5;
-    incrementar(&num); // num agora é 6
 }
 
-void incrementar(int *num) {
-    (*num)++; // Altera o valor original
+void troca_com_ponteiros(int *px, int *py)
+{
+    int temp;
+    temp = *px;
+    *px = *py;
+    *py = temp;
+}
+
+void incrementa_vetor(int *vetor)
+{
+    for (int i = 0; i < 5; i++) {
+        vetor[i]++;
+    }
+}
+
+int main()
+{
+    int a = 1, b = 2;
+    printf("%i %i\n", a, b);
+    troca_com_ponteiros(&a, &b);
+    printf("%i %i\n", a, b);
+
+    int vetor[5] = {1,2,3,4,5};
+    incrementa_vetor(&vetor[0]);
+    for (int i = 0; i < 5; i++){
+        printf("%i ", vetor[i]);
+    }
+    
+    return 0;
 }
