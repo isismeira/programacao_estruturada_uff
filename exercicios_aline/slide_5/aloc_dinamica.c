@@ -25,7 +25,7 @@ void malloc_e_free()
     free(ponteiro);
 }
 
-void calloc()
+void exemplo_calloc()
 {
     // calloc(): trabalha com dois parâmetros sendo o primeiro que indica quantos elementos do tamanho do segundo parâmetros devemos separar 
     int *p = (int *) calloc(10, sizeof(int)); // obs. inicializa todos os valores com 0
@@ -42,7 +42,7 @@ void calloc()
 
 }
 
-void realloc()
+void exemplo_realloc()
 {
     // realloc(): pode ser necessário, durante a execução de um programa, alterar o tamanho de um bloco alocado
     int *ponteiro = (int *) malloc(sizeof(int));
