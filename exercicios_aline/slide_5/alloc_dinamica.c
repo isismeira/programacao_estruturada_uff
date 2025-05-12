@@ -9,7 +9,6 @@
 
 // sizeof(dado) retorna tamanho em bytes do tipo de dado
 
-
 void malloc_e_free()
 {
     // malloc(): pede ao SO um bloco de memória de uma tamanho que vamos especificar, retorna um ponteiro do endereço do bloco reservado.
