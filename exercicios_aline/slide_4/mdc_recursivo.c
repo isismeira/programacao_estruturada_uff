@@ -17,3 +17,4 @@ int mdc(int x, int y) {
         return mdc(y, x % y);
     }
 }
+    
