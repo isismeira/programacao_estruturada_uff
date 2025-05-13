@@ -31,6 +31,7 @@ int vira_minuscula(char c) // transforma todas letras em minusculas
     else
         return c;    
 }
+
 void imprime(char* s) // le caractere por caractere
 {
     int i;
@@ -39,7 +40,7 @@ void imprime(char* s) // le caractere por caractere
     printf("\n");
 }
 
-void le_e_imprime(char* string) // como ler e imprimir strings
+void le_e_imprime(char *string) // como ler e imprimir strings
 {
     // Leitura ideal para nomes compostos
     scanf(" %80[^\n]", string); // ATENÇÃO: sem & ; lê no máximo 80 caracteres
