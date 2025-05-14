@@ -1,0 +1,4 @@
+Média das idades: 34.000000
+Média das alturas: 1.707000
+Quantidade de pessoas com idade acima da media: 9
+Quantidade de mulheres de olhos verdes com mais de 50 anos: 1
