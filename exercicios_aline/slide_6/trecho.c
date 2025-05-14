@@ -14,7 +14,7 @@ int main()
     scanf(" %c", &caractere); // ler caractere eh assim
     
     int i;
-    for (i = 0; *(palavra + i) != '\0'; i++){
+    for (i = 0; *(palavra + i) != '\0'; i++){ // sempre '\0'
         if (*(palavra + i) == caractere) {
             copiando_trecho(i, palavra, trecho, caractere);
             break;
