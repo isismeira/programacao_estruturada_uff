@@ -3,8 +3,9 @@
 int fat (int n);
 
 int main() {
-    int f = fat(5);
-    printf("%i", f);
+    int f;
+    scanf("%i", &f);
+    printf("%i", fat(f));
     return 0;
 }
 
