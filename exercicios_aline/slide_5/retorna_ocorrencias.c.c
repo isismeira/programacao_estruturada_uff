@@ -24,7 +24,7 @@ int main()
     printf("Está procurando por quem?");
     scanf("%i", &x);
 
-    int *vetor_enderecos[n];
+    int *vetor_enderecos[n]; // vetor de ponteiros para inteiros
     int qtdd_indices = procurar_elemento(vetor, vetor_enderecos, n, x);
 
     print_enderecos(vetor_enderecos, qtdd_indices);
@@ -33,7 +33,7 @@ int main()
 void ler_vetor(int *vetor, int n) {
     for (int i = 0; i < n; i++) {
         printf("Digite o elemento da posição %i: ", i);
-        scanf("%i", (vetor+i));         
+        scanf("%i", (vetor+i));   // não precisa de & pois (vetor + i) ja é o endereço   
     }
 }
 
@@ -41,7 +41,7 @@ int procurar_elemento(int *vetor, int **vetor_enderecos, int n, int x)
 {
     int j = 0;
     for (int i = 0; i < n; i++) {
-        if (*(vetor+i) == x) {
+        if (*(vetor+i) == x) { 
             *(vetor_enderecos + j) = (vetor +i);
             j++;
         }
