@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h>  // Adicionado para malloc
 
 int **alocar_matriz(int l, int c) {
     int **matriz;
@@ -13,23 +13,19 @@ int **alocar_matriz(int l, int c) {
 void ler_matriz(int **matriz, int l, int c){
     for (int i = 0; i < l; i++) {
         for (int j = 0; j < c; j++) {
-            printf("Digite o elemento da linha %i e coluna %i:", l, c);
+            printf("Digite o elemento da linha %i e coluna %i:", i, j); // Corrigido
             scanf("%i", &matriz[i][j]);
         } 
     }
 }
 
-void somatorio_submatrizes(int qtdd_submatrizes, int *somas_submatrizes, int **matriz, int l, int c) {
-        for (int i = 0; i < l; i += 2) {
+void somatorio_submatrizes(int *qtdd_submatrizes, int *somas_submatrizes, int **matriz, int l, int c) {
+    for (int i = 0; i < l; i += 2) {
         for (int j = 0; j < c; j += 2) {
             if (((i + 1) < l) && ((j + 1) < c )) {
-                int primeiro = matriz[i][j];
-                int segundo =  matriz[i + 1][j];
-                int terceiro = matriz[i][j+1];
-                int quarto = matriz[i + 1][j + 1];
-                int soma = primeiro + segundo + terceiro + quarto;
-                somas_submatrizes[qtdd_submatrizes] = soma;
-                qtdd_submatrizes++;
+                int soma = matriz[i][j] + matriz[i + 1][j] + matriz[i][j+1] + matriz[i + 1][j + 1];
+                somas_submatrizes[*qtdd_submatrizes] = soma;
+                (*qtdd_submatrizes)++;
             }
         }
     }
@@ -64,20 +60,17 @@ void somatorio_diagonais(int *somas_diagonais,int **matriz,int l,int c) {
 
     int diagonal_direita = 0;
     for (int i = 0; i < l; i++) {
-        for (int j = c - 1; j >= 0; j--){
-            diagonal_direita += matriz[i][j];
-        }
+        diagonal_direita += matriz[i][c - i - 1];  // Corrigido
     }
     somas_diagonais[1] = diagonal_direita;
 }
 
-int main()
-{
+int main() {
     int l, c;
-    printf("Digite o numero de linhas e colunas");
+    printf("Digite o numero de linhas e colunas: ");
     scanf("%i %i", &l, &c);
 
-    int matriz = alocar_matriz(l, c);
+    int **matriz = alocar_matriz(l, c);  // Corrigido
     ler_matriz(matriz, l, c);
 
     int qtdd_submatrizes = 0;
@@ -86,39 +79,37 @@ int main()
     int somas_colunas[c];
     int somas_diagonais[2];
 
-    somatorio_submatrizes(qtdd_submatrizes, somas_submatrizes, matriz, l, c);
+    somatorio_submatrizes(&qtdd_submatrizes, somas_submatrizes, matriz, l, c);  // Corrigido
     somatorio_linhas(somas_linhas, matriz, l, c);
     somatorio_colunas(somas_colunas, matriz, l, c);
     somatorio_diagonais(somas_diagonais, matriz, l, c);
 
-
-    if (somas_diagonais[0] != somas_diagonais) {
-        printf("Nao eh quadrado magico");
+    if (somas_diagonais[0] != somas_diagonais[1]) {
+        printf("Nao eh quadrado magico\n");
         return 0;
-    } else {
-        for (int i = 1; i < l; i++) {
-            if (somas_linhas[0] != somas_linhas[i]) {
-                printf("Nao eh quadrado magico");
-                return 0;
-            }
-            if(somas_colunas[0] != somas_colunas[i]) {
-                printf("Nao e quadrado magico");
-                return 0;
-            }
-        }
     }
 
-    for (int i = 0; i < 20; i++) {
-        if (somas_submatrizes[0] != somas_submatrizes[i]) {
-            printf("Nao e quadrado magico");
+    for (int i = 1; i < l; i++) {
+        if (somas_linhas[0] != somas_linhas[i] || somas_colunas[0] != somas_colunas[i]) {
+            printf("Nao eh quadrado magico\n");
             return 0;
         }
     }
 
-    if (somas_submatrizes[0] != somas_linhas[0] != somas_colunas[0] != somas_diagonais[0]) {
-        printf("Nao e quadrado magico");
-        return 0 ;
+    for (int i = 0; i < qtdd_submatrizes; i++) {
+        if (somas_submatrizes[0] != somas_submatrizes[i]) {
+            printf("Nao eh quadrado magico\n");
+            return 0;
+        }
     }
 
-    printf("Eh quadrado magico!");
+    if (!(somas_submatrizes[0] == somas_linhas[0] &&
+          somas_linhas[0] == somas_colunas[0] &&
+          somas_colunas[0] == somas_diagonais[0])) {
+        printf("Nao eh quadrado magico\n");
+        return 0;
+    }
+
+    printf("Eh quadrado magico!\n");
+    return 0;
 }
