@@ -1,0 +1,30 @@
+João Silva;35;Engenheiro
+Maria Souza;28;Médica
+Carlos Oliveira;42;Professor
+Ana Pereira;31;Advogada
+Pedro Santos;26;Desenvolvedor
+Juliana Costa;39;Arquiteta
+Lucas Mendes;17;Estudante
+Fernanda Lima;64;Aposentada
+Ricardo Alves;15;Estudante
+Beatriz Rocha;68;Professora
+Gustavo Neves;22;Designer
+Patrícia Castro;71;Enfermeira
+Rodrigo Martins;14;Estudante
+Helena Dias;60;Contadora
+Marcos Ribeiro;19;Estagiário
+Eduarda Nunes;67;Administradora
+Felipe Gomes;16;Estudante
+Larissa Peixoto;72;Artista
+Daniel Cunha;29;Analista de Sistemas
+Vitória Cardoso;13;Estudante
+Roberto Campos;65;Engenheiro Civil
+Amanda Freitas;24;Jornalista
+Thiago Lopes;12;Estudante
+Cecília Moreira;70;Psicóloga
+Bruno Teixeira;33;Músico
+Isabela Santos;11;Estudante
+Sérgio Moura;63;Consultor
+Gabriela Rios;27;Marketing
+Enzo Duarte;10;Estudante
+Mariana Andrade;69;Bibliotecária
