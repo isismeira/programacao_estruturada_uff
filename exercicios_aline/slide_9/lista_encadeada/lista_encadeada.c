@@ -4,42 +4,34 @@
 
 
 typedef struct lista {
-	int info;
-	struct lista* prox;
+	int info;  // informação armazenada
+	struct lista* prox; // o ponteiro autoreferencia a lista
 }ListaInteiros;
 
-/* Criação da lista: cria uma lista vazia */
 
+// Criação da lista: cria uma lista vazia
 ListaInteiros* lista_cria ( ){
 	return NULL;
 }
 
-
-/* inserção de elementos em uma lista existente: retorna a lista com o novo elemento inserido na primeira posição  */
-
-ListaInteiros* lista_insere (ListaInteiros* l, int i) {
-	//  aloca espaço para o novo elemento 
-	ListaInteiros* novo = (ListaInteiros*) malloc(sizeof(ListaInteiros)); 
-	novo->info = i;			// informação armazenada é o inteiro recebido
-	novo->prox = l;			// aponta para o início (antigo) da lista 
-	return novo;			/* o novo elemento passa a ser a referência para o   
-                                                   início da lista */
+// Inserir um novo elemento na cabeça da lista (início da lista).
+ListaInteiros* lista_insere (ListaInteiros* l, int i) { // l é o ponteiro para o início atual da lista, e i, a infomação que desejamos adicionar
+	ListaInteiros* novo = (ListaInteiros*)malloc(sizeof(ListaInteiros)); //  alocado dinamicamente um novo nó do tipo ListaInteiros
+	novo->info = i;	// armazena o valor que queremos adicionar à lista.
+	novo->prox = l;	// O campo prox do novo nó vai apontar para o início da lista atual 		
+	return novo; // retorna o ponteiro para o novo início da lista 			
 }
 
-/* exibe na tela os elementos na lista */
-
+// exibe na tela os elementos na lista 
 void lista_exibe(ListaInteiros* l) {
 	puts("#### Lista encadeada #####");
 	ListaInteiros* p;						// ponteiro auxiliar para "andar" na lista
-	for (p = l; p != NULL; p = p->prox)		/* percorre a lista, apontando para cada elemento a cada iteração */
+	for (p = l; p != NULL; p = p->prox)		// percorre a lista, apontando para cada elemento a cada iteração 
 		printf("info = %d\n", p->info);		// imprime a informação armazenada no nó
  }
  
 
-
-
-/* exclusão da lista: libera espaço de memória de cada elemento alocado dinamicamente */
-
+// exclusão da lista: libera espaço de memória de cada elemento alocado dinamicamente
 void lista_exclui (ListaInteiros* l){
 	ListaInteiros* p = l;			// ponteiro para o primeiro elemento da lista
 	while (p != NULL) {			// enquanto não chega no último elemento
@@ -55,7 +47,7 @@ int lista_vazia (ListaInteiros* l){
 }
 
 
-/* procura um determinado elemento na lista */
+// procura um determinado elemento na lista 
 
 ListaInteiros* busca (ListaInteiros* l, int v) { 
 	ListaInteiros* p;
@@ -63,12 +55,10 @@ ListaInteiros* busca (ListaInteiros* l, int v) {
 		if (p->info == v)				// achou a informação: termina a busca
 			return p;
 	}
-	return NULL;					/* passou por todos os elementos e não 
-	achou o procurado */
+	return NULL;					// passou por todos os elementos e não achou o procurado 
 }
 
-/* Exclui um determinado elemento v da lista encadeada*/
-
+// Exclui um determinado elemento v da lista encadeada
 ListaInteiros* lista_remove_elemento(ListaInteiros* l, int v) {
 	ListaInteiros* ant = NULL;			// ponteiro para armazenar o elemento anterior	
 	ListaInteiros* p = l;				// ponteiro para percorrer a lista
@@ -81,17 +71,14 @@ ListaInteiros* lista_remove_elemento(ListaInteiros* l, int v) {
 	if (ant == NULL)					// (Caso 1) é o primeiro elemento, logo 
 		l = p->prox; 				// lista passa a apontar para o ex-segundo elemento
 	else 
-		ant->prox = p->prox; 			/* (casos 2 e 3) corta a referência com o elemento 
-		encontrado */
+		ant->prox = p->prox; 			// (casos 2 e 3) corta a referência com o elemento encontrado
 	free(p);						// libera o espaço alocado para o elemento
 	return l;						
 }
 
-/* insere elemento em ordem */
-
+// insere elemento em ordem 
 ListaInteiros* lista_insere_ordenado (ListaInteiros* l, int v) {
-	ListaInteiros* ant = NULL;					/* ponteiro para guardar o elemento que 
-		   ficará antes do novo */
+	ListaInteiros* ant = NULL;					// ponteiro para guardar o elemento que ficará antes do novo 
 	ListaInteiros* p = l;							// ponteiro para percorrer a lista
 	while (p != NULL && p->info < v) { 		// percorre a lista até achar a posição correta
 		ant = p; 
