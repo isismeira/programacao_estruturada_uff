@@ -59,3 +59,4 @@ int main() {
     printf("\nLista liberada da memória.\n");
 
     return 0;
+}    
