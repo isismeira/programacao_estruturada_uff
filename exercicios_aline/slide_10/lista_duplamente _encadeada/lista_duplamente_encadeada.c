@@ -18,7 +18,7 @@ void lista_dupla_libera(ListaDupla* lista){
 	ListaDupla* percorre = lista;			// ponteiro para o primeiro elemento da lista
 	while (percorre != NULL) {		           // enquanto não chega no último elemento
 		ListaDupla* aux = percorre->prox;	   // guarda o ponteiro para o próximo elemento
-		free(percorre);      				   // libera espaço do elemento corrente
+		free(percorre);      				   // libera espaço do elemento corrente 
 		percorre = aux;					       // lista passa apontar para o próximo elemento
 	}
 }
