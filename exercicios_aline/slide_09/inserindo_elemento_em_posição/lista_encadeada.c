@@ -21,7 +21,7 @@ ListaInteiros* lista_insere (ListaInteiros* l, int i) {
 }
 
 ListaInteiros* lista_insere_posicao(ListaInteiros* l, int valor, int pos) { // !!!
-    ListaInteiros* novo = malloc(sizeof(ListaInteiros));
+    ListaInteiros* novo = (ListaInteiros*)malloc(sizeof(ListaInteiros));
     novo->info = valor;
 
     ListaInteiros* p = l;
